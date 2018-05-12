@@ -1,8 +1,7 @@
 package com.thomaskuenneth.fingerprintdialogdemo;
 
 import android.app.Activity;
-import android.hardware.fingerprint.FingerprintDialog;
-import android.hardware.fingerprint.FingerprintDialog.AuthenticationResult;
+import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.util.Log;
@@ -17,7 +16,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FingerprintDialog.Builder b = new FingerprintDialog.Builder();
+        BiometricPrompt.Builder b = new BiometricPrompt.Builder(this);
         b.setDescription(getString(R.string.descr));
         b.setTitle(getString(R.string.title));
         b.setSubtitle(getString(R.string.subtitle));
@@ -25,10 +24,10 @@ public class MainActivity extends Activity {
                 getMainExecutor(), (dialogInterface, i) ->
                         Log.d(TAG, "button clicked")
         );
-        FingerprintDialog d = b.build(this);
+        BiometricPrompt d = b.build();
         CancellationSignal cs = new CancellationSignal();
         d.authenticate(cs, getMainExecutor(),
-                new FingerprintDialog.AuthenticationCallback() {
+                new BiometricPrompt.AuthenticationCallback() {
 
                     @Override
                     public void onAuthenticationError(int errorCode, CharSequence errString) {
@@ -36,7 +35,7 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onAuthenticationSucceeded(AuthenticationResult result) {
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                         toast(R.string.ok);
                     }
 
