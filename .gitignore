@@ -1,3 +1,5 @@
+Browse.plb
+
 # Built application files
 *.apk
 *.ap_
@@ -37,9 +39,9 @@ captures/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
-.idea/dictionaries
-.idea/libraries
-.idea/caches
+**/.idea/dictionaries
+**/.idea/libraries
+**/.idea/caches
 
 # Keystore files
 *.jks
