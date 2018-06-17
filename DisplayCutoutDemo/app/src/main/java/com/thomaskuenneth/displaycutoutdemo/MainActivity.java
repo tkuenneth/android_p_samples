@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.DisplayCutout;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -18,11 +19,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                 | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
         );
 
-        getWindow().getAttributes().layoutInDisplayCutoutMode
+        window.getAttributes().layoutInDisplayCutoutMode
                 = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
 
         setContentView(R.layout.layout);
@@ -35,16 +37,25 @@ public class MainActivity extends Activity {
                 StringBuilder sb = new StringBuilder();
                 DisplayCutout dc = windowInsets.getDisplayCutout();
                 if (dc != null) {
-                    sb.append(String.format(Locale.getDefault(), "getSafeInsetLeft(): %d\n", dc.getSafeInsetLeft()));
-                    sb.append(String.format(Locale.getDefault(), "getSafeInsetTop(): %d\n", dc.getSafeInsetTop()));
-                    sb.append(String.format(Locale.getDefault(), "getSafeInsetRight(): %d\n", dc.getSafeInsetRight()));
-                    sb.append(String.format(Locale.getDefault(), "getSafeInsetBottom(): %d\n", dc.getSafeInsetBottom()));
+                    sb.append(String.format(Locale.getDefault(),
+                            "getSafeInsetLeft(): %d\n", dc.getSafeInsetLeft()));
+                    sb.append(String.format(Locale.getDefault(),
+                            "getSafeInsetTop(): %d\n", dc.getSafeInsetTop()));
+                    sb.append(String.format(Locale.getDefault(),
+                            "getSafeInsetRight(): %d\n", dc.getSafeInsetRight()));
+                    sb.append(String.format(Locale.getDefault(),
+                            "getSafeInsetBottom(): %d\n", dc.getSafeInsetBottom()));
                     List<Rect> l = dc.getBoundingRects();
                     for (int i = 0; i < l.size(); i++) {
                         Rect r = l.get(i);
-                        sb.append(String.format(Locale.getDefault(), "Bounding Rect #%d\n", i));
-                        sb.append(String.format(Locale.getDefault(), "left: %d, top: %d, right: %d, bottom: %d\n", r.left, r.top, r.right, r.bottom));
+                        sb.append(String.format(Locale.getDefault(),
+                                "Bounding Rect #%d\n", i));
+                        sb.append(String.format(Locale.getDefault(),
+                                "left: %d, top: %d, right: %d, bottom: %d\n",
+                                r.left, r.top, r.right, r.bottom));
                     }
+                } else {
+                    sb.append("no display cutouts");
                 }
                 textview.setText(sb.toString());
                 return view.onApplyWindowInsets(windowInsets);
