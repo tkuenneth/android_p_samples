@@ -5,17 +5,21 @@ import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tv = findViewById(R.id.textview);
         BiometricPrompt.Builder b = new BiometricPrompt.Builder(this);
         b.setDescription(getString(R.string.descr));
         b.setTitle(getString(R.string.title));
@@ -48,5 +52,6 @@ public class MainActivity extends Activity {
 
     private void toast(int resid) {
         Toast.makeText(this, resid, Toast.LENGTH_LONG).show();
+        tv.setText(resid);
     }
 }
