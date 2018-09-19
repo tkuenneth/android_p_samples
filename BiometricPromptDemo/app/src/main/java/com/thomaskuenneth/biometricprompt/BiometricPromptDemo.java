@@ -1,4 +1,4 @@
-package com.thomaskuenneth.fingerprintdialogdemo;
+package com.thomaskuenneth.biometricprompt;
 
 import android.app.Activity;
 import android.hardware.biometrics.BiometricPrompt;
@@ -8,9 +8,9 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class BiometricPromptDemo extends Activity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = BiometricPromptDemo.class.getSimpleName();
 
     private TextView tv;
 

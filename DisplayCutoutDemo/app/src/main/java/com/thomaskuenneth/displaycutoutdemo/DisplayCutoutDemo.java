@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class DisplayCutoutDemo extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

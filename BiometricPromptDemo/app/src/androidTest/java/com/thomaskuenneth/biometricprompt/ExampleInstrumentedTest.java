@@ -1,4 +1,4 @@
-package com.thomaskuenneth.fingerprintdialogdemo;
+package com.thomaskuenneth.biometricprompt;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
